@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalogue{% endblock %}
+
+{# {% block nav %}
+{% endblock %} #}
+
+{% block content %}
+
+    {# {% if app.user.valid == 0 %} 
+        {{ render('connexion') }}
+    {% else %} #}
+        <div class="container mt-5">
+            <a href="{{ path('catalogue') }}" class="btn btn-grad fw-bold btn-block"> Revenir au catalogue </a>
+            <div class="row mt-5">
+                <div class='col-12 col-lg-6'>
+                    <img src="/uploads/images/{{annonce.image}}" alt="{{ annonce.name }}" class="img-fluid text-center">
+                </div>
+                <div class='col-12 col-lg-6' >
+                            <h5 class="card-title"> {{annonce.name}}</h5>
+                                {% if annonce.deal == 'Don'%}
+                                    <p class="text"> Donné par : {{annonce.user}}</p>
+                                {% else %}
+                                    <p class="text"> Vendu par : {{annonce.user}} | Prix : {{annonce.price}} €</p>
+                                    <p class="text"></p>
+                                {% endif %}             
+                            <p class='text-'>Publié le : {{annonce.createAt|date("d/m/Y")}}</p>       
+                            <p class="card-text"> {{annonce.description}}</p>   
+                                {% if is_granted('ROLE_USER') %}               
+                                <a 
+                                {# href= "{{ path('message_buy', {'id' : annonce.id }) }}"   #}
+                                class="btn text-light fw-bold" style="background : #7AB7AB"> ACHETER</a>
+                                {% else %}
+                                <p> Pour contacter le vendeur veuillez vous connecter : 
+                                <a href= "{{ path('app_login', {'id' : annonce.id }) }}"  
+                                class=""> Se connecter</a> </p>
+
+                                {% endif %}               
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+{% endblock %}

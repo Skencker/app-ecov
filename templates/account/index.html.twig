@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Mon compte
+{% endblock %}
+
+{% block content %}
+
+	<div class="container mb-5">
+		<h1 class="mb-5">Mon compte</h1>
+		<div class="row">
+			<div class="col-10 col-lg-3 bg-light box mx-auto p-4 mb-3">
+				<p class="fw-bold ">Mes coordonées</p>
+				<p>
+					Nom :
+					{{app.user.name}}
+				</p>
+				<p>
+					Email :
+					{{app.user.email}}
+					</p>
+				<p class="fw-bold">Déposer une annonce :</p>
+				<a
+				href="{{ path('add_annonce') }}" 
+				class="text-decoration-none ">
+					<button class="btn btn-sm btn-grad text-light fw-bold mt-3 mx-auto" type="submit">VENDRE</button>
+				</a>
+			</div>
+			<div class="col-10 col-lg-8 p-4 bg-light box mx-auto">
+				<p class="fw-bold fs-4">Mes annonces :</p>
+				<thead>
+					<tr>
+						{# <th scope="col">Nom</th> #}
+						{# <th scope="col">Description</th> #}<th scope="col"> </th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						{# <th scope="col"></th> #}
+					</tr>
+				</thead>
+					<div class="row my-4">
+						{% for annonce in annonceUser %}
+							<div class="col-12 col-lg-6 m-auto">
+								<div class="card border-0">
+									<img src="{{ asset('uploads/images/' ~ annonce.image)|imagine_filter('carre') }}" alt="{{annonce.name}}" class="img-fluid" style="height: 100%; width:100%; objectFite: cover;  ">
+								
+								{# </div> #}
+								{# <div class="col-8 col-lg-6 my-auto"> #}
+								<table class="table">
+									<tbody>
+										<tr>
+											{# <td>{{produit.name}}</td> #}
+											{# <td >{{produit.description}}</td> #}
+											{# <td><img src="/uploads/images/{{produit.image}}" alt="{{produit.name}}" class="img-fluid w-25 w-hidden"></td> #}
+											<td class="text-center">
+												<a href="{{ path('annonce_vue', {'slug': annonce.slug}) }}">
+													<button class="btn text-light fw-bold" style="background : #7AB7AB" type="submit">
+														<i class="bi bi-eye"></i>
+													</button>
+												</a>
+											</td>
+											<td class="text-center">
+												<a 
+												href="{{ path('edit_annonce', {'id': annonce.id}) }}"
+												>
+													<button class="btn text-light fw-bold" style="background : #A286D1" type="submit">
+														<i class="bi bi-eraser"></i>
+													</button>
+												</a>
+											</td>
+											<td class="text-center">
+												<button type="button" class="btn text-light fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background : #CF9A6E"><i class="bi bi-archive"></i></button>
+											</td>
+										</tr>
+												<!-- Modal -->
+							<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Confirmation de suppression</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											Voulez vous vraiment supprimer cet article ?
+										</div>
+										<div class="modal-footer">
+											<a href="{{ path('account')}}">
+												<button type="button" class="btn" style="background : #7AB7AB">RETOUR</button>
+											</a>
+											<a href="{{ path('delete_annonce', {'id': annonce.id}) }}">
+												<button type="submit" class="btn" style="background : #CF9A6E">SUPPRIMER</button>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+									</tbody>
+								</table>
+							</div>
+							</div>
+					
+
+					
+						{% endfor %}
+					</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalogue{% endblock %}
+
+{% block content %}
+    <div class="container mt-5 mb-5">
+        <a href="{{ path('account') }}" class="btn btn-grad btn-sm  fw-bold"> Revenir au compte </a>
+        <div class="row mt-5">
+            <div class='col-12 col-lg-6'>
+                <img src="/uploads/images/{{annonce.image}}" alt="{{ annonce.name }}" class="img-fluid text-center mb-4">
+            </div>
+            <div class='col-12 col-lg-6' >
+                <p class="box p-3"> Titre : <br> {{annonce.name}}</p>
+                <p class="box p-3"> Type de vente : <br> {{annonce.deal}}</p>
+                <p class="box p-3"> Prix : <br> {{annonce.price}} €</p>      
+                <p class="box p-3"> Publié le : <br> {{annonce.createAt|date("d/m/Y")}}</p>       
+                <p class="box p-3"> Description : <br> {{annonce.description}}</p>   
+            </div>
+        </div>
+    </div>
+{% endblock %}

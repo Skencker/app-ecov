@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EcoV
+{% endblock %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row ">
+			<div class='col-2'></div>
+			<div class="col-5 fs-5 ">
+				<div class="row">
+					<div class="col-lg-12 ">
+						<h1 class='fw-bold'>EcoV</h1>
+						<p class="fw-bold">
+							Envi de faire un geste pour la planéte ? De vider vos placards trop plein ?
+							<br>
+							De trouver votre bonheur au coin de la rue ?
+							<br>
+							Vous êtes au bon endroit...
+							<br>
+							Vendez, donnez ou achetez entre voisins de Saint Pierre de lages !
+							<br>
+						</p>
+						<button type="btn" class="btn-grad mt-5  btn-lg btn fw-bold text-light text-uppercase">DECOUVRIR</button>
+					</div>
+				</div>
+				<div class='row '>
+					<div class='col-3'></div>
+					<div class="col-lg-3">
+						<img class="img img-fluid w-100" src="{{ asset('build/images/bul-bleu.ec66cd0d.svg')}}" alt="bulle-bleu">
+					</div>
+					<div class="col-lg-4">
+						<img class="img img-fluid w-100" src="{{ asset('build/images/bul-vert.68779c6b.svg')}}" alt="bulle-vert">
+					</div>
+					<div class='col-2'></div>
+				</div>
+				<div class='row '>
+					<div class='col-5'></div>
+					<div class="col-lg-3">
+						<img class="img img-fluid w-100" src="{{ asset('build/images/bul-rose.48a0b719.svg')}}" alt="bulle-rose">
+					</div>
+					<div class='col-4'></div>
+				</div>
+			</div>
+			<div class='col-3'>
+				<img class="img img-fluid w-100" src="{{ asset('build/images/eglise.ca5401d2.png')}}" alt="eglise">
+			</div>
+			<div class='col-2'></div>
+		</div>
+		<div class="row ">
+			<div class='col-4'></div>
+			<div class='col-4'></div>
+			<div class='col-4'></div>
+		</div>
+		<div class="row p-5  ">
+			{% for produit in produits %}
+			<div class="col-lg-2 ">
+				<a 
+				{# href="{{ path('produit', {'slug': produit.slug}) }}"  #}
+				class="text-dark text-decoration-none">
+					<div class="card box-card box bg-light mx-auto " >
+						{# <img src="/uploads/images/{{produit.image}}" class="card-img-top" alt="{{produit.name}}"> #}
+						<img src="{{ asset('uploads/images/' ~ produit.image)|imagine_filter('carre') }}"alt="{{ produit.name}}" class='img img-fluid w-100'>
+						<div class="card-body">
+							<h5 class="card-title">{{produit.name}}</h5>
+							{% if produit.deal == 'Don'%}
+								<p class="card-text">
+									Donneur :
+									{{produit.user.getname()}}</p>
+							{% else %}
+								<p class="card-text">
+									Vendeur :
+									{{produit.user}}
+								</p>
+								<p class="card-text">
+									Prix :
+									{{produit.price}}
+									€</p>
+							{% endif %}
+							<p class='text-'>Publié le :
+								{{produit.createAt|date("d/m/Y")}}</p>
+							<a 
+							{# href="{{ path('produit', {'slug': produit.slug}) }}" #}
+							class="btn btn-sm w-100 align-self-center fw-bold ">VOIR</a>
+						</div>
+					</div>
+				</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

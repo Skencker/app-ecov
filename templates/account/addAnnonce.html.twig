@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout article{% endblock %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block content %}
+
+
+<div class="container mb-5">
+    <h2 class="fw-bold"> Ajouter un article </h2>
+      {{ form_start(form) }}
+      {{ form_row(form.name, {'attr' : {'placeholder': "Nom de l'article"}, 'label' : "Nom" }) }}
+      {{ form_row(form.description, {'attr' : {'placeholder': "Description de l'article"}, 'label' : "Description"  })}}
+      {{ form_row(form.price, {'attr': {'required' : false}, 'label' : "Prix" }) }}
+      {{ form_row(form.image,{'attr' : {'placeholder': "Image de l'article"}}) }}
+      {{ form_row(form.category, {'label' : "Catégorie"  })}}
+      {{ form_row(form.deal, {'label' : "Type de vente"  }) }}
+
+        {% if editMode %}
+            <button type = "submit" class="btn text-light fw-bold" style="background : #7AB7AB">
+                  VALIDER
+            </button>
+            <a href="{{ path('account')}}"class="btn text-light fw-bold" style="background : #CF9A6E">RETOUR</a>
+        {% else %}
+            <button type = "submit" class="btn text-light fw-bold" style="background : #7AB7AB">
+            Ajouter l'article
+            </button>
+        {% endif %}
+  {{ form_end(form) }}
+   
+</div>
+{% endblock %}

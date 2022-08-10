@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+
+{% block title %}Inscription{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-center container">
+        <div class=" w-50 h-100 box bg-light p-4">
+            <h1 class=" "> Inscription</h1>
+
+            {{ form(form) }}
+            {# <p class="text-center">Ou avez-vous <a  href="{{ path('app_login')}}" >  déjà un compte </a> ? </p>  #}
+
+        </div>
+    </div>
+{% endblock %}
