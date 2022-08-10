@@ -41,12 +41,12 @@ class CatalogueController extends AbstractController
     #[Route('/annonce-vue/{slug}', name: 'annonce_vue')]
     public function view($slug): Response
     {
-        $produit = $this->entityManager->getRepository(Products::class)->findOneBySlug($slug);
+        $produit = $this->entityManager->getRepository(Annonce::class)->findOneBySlug($slug);
 
         if (!$produit) {
             return $this->redirectToRoute('account');
         }
-        return $this->render('account/viewProduct.html.twig', [
+        return $this->render('account/viewAnnonce.html.twig', [
             'annonce' => $produit
         ]);
     }

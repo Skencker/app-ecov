@@ -30,28 +30,21 @@
 				<p class="fw-bold fs-4">Mes annonces :</p>
 				<thead>
 					<tr>
-						{# <th scope="col">Nom</th> #}
-						{# <th scope="col">Description</th> #}<th scope="col"> </th>
+						<th scope="col"> </th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
-						{# <th scope="col"></th> #}
 					</tr>
 				</thead>
-					<div class="row my-4">
-						{% for annonce in annonceUser %}
-							<div class="col-12 col-lg-6 m-auto">
-								<div class="card border-0">
-									<img src="{{ asset('uploads/images/' ~ annonce.image)|imagine_filter('carre') }}" alt="{{annonce.name}}" class="img-fluid" style="height: 100%; width:100%; objectFite: cover;  ">
-								
-								{# </div> #}
-								{# <div class="col-8 col-lg-6 my-auto"> #}
+				<div class="row my-4">
+					{% for annonce in annonceUser %}
+						<div class="col-12 col-lg-6 m-auto">
+							<div class="card border-0">
+								<img src="{{ asset('uploads/images/' ~ annonce.image)|imagine_filter('carre') }}" alt="{{annonce.name}}" class="img-fluid" style="height: 100%; width:100%; objectFite: cover;  ">
+							
 								<table class="table">
 									<tbody>
 										<tr>
-											{# <td>{{produit.name}}</td> #}
-											{# <td >{{produit.description}}</td> #}
-											{# <td><img src="/uploads/images/{{produit.image}}" alt="{{produit.name}}" class="img-fluid w-25 w-hidden"></td> #}
 											<td class="text-center">
 												<a href="{{ path('annonce_vue', {'slug': annonce.slug}) }}">
 													<button class="btn text-light fw-bold" style="background : #7AB7AB" type="submit">
@@ -69,7 +62,10 @@
 												</a>
 											</td>
 											<td class="text-center">
-												<button type="button" class="btn text-light fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background : #CF9A6E"><i class="bi bi-archive"></i></button>
+													<a href="{{ path('delete_annonce', {'id': annonce.id}) }}">
+												<button type="submit" class="btn text-light fw-bold" style="background : #CF9A6E"><i class="bi bi-archive"></i></button>
+											</a>
+												{# <button type="button" class="btn text-light fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background : #CF9A6E"><i class="bi bi-archive"></i></button> #}
 											</td>
 										</tr>
 												<!-- Modal -->
@@ -95,13 +91,13 @@
 								</div>
 							</div>
 									</tbody>
-								</table>
-							</div>
-							</div>
-					
+							</table>
+						</div>
+						</div>
+				
 
-					
-						{% endfor %}
+				
+					{% endfor %}
 					</div>
 			</div>
 		</div>

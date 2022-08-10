@@ -6,7 +6,11 @@
 
 
 <div class="container mb-5">
-    <h2 class="fw-bold"> Ajouter un article </h2>
+       {% if editMode %}
+    <h2 class="fw-bold"> Modifier l'annonce </h2>
+         {% else %}
+    <h2 class="fw-bold"> Ajouter une annonce </h2>
+           {% endif %}
       {{ form_start(form) }}
       {{ form_row(form.name, {'attr' : {'placeholder': "Nom de l'article"}, 'label' : "Nom" }) }}
       {{ form_row(form.description, {'attr' : {'placeholder': "Description de l'article"}, 'label' : "Description"  })}}

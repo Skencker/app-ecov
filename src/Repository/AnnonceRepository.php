@@ -40,8 +40,8 @@ class AnnonceRepository extends ServiceEntityRepository
     }
 
     public function findUser ($user) {
-        return $this->createQueryBuilder('p')
-        ->andWhere('p.user = :user')
+        return $this->createQueryBuilder('a')
+        ->andWhere('a.user = :user')
         ->setParameter('user', $user)
         ->getQuery()
         ->getResult()

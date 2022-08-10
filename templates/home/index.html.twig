@@ -47,46 +47,26 @@
 			</div>
 			<div class='col-2'></div>
 		</div>
-		<div class="row ">
-			<div class='col-4'></div>
-			<div class='col-4'></div>
-			<div class='col-4'></div>
-		</div>
-		<div class="row p-5  ">
-			{% for produit in produits %}
-			<div class="col-lg-2 ">
-				<a 
-				{# href="{{ path('produit', {'slug': produit.slug}) }}"  #}
-				class="text-dark text-decoration-none">
-					<div class="card box-card box bg-light mx-auto " >
-						{# <img src="/uploads/images/{{produit.image}}" class="card-img-top" alt="{{produit.name}}"> #}
-						<img src="{{ asset('uploads/images/' ~ produit.image)|imagine_filter('carre') }}"alt="{{ produit.name}}" class='img img-fluid w-100'>
-						<div class="card-body">
-							<h5 class="card-title">{{produit.name}}</h5>
-							{% if produit.deal == 'Don'%}
-								<p class="card-text">
-									Donneur :
-									{{produit.user.getname()}}</p>
-							{% else %}
-								<p class="card-text">
-									Vendeur :
-									{{produit.user}}
-								</p>
-								<p class="card-text">
-									Prix :
-									{{produit.price}}
-									€</p>
-							{% endif %}
-							<p class='text-'>Publié le :
-								{{produit.createAt|date("d/m/Y")}}</p>
-							<a 
-							{# href="{{ path('produit', {'slug': produit.slug}) }}" #}
-							class="btn btn-sm w-100 align-self-center fw-bold ">VOIR</a>
+		<div class="container">
+			<div class="row gy-4 ">
+				{% for annonce in annonces %}
+				<div class="col-lg-3 ">
+					<a 
+					href="{{ path('annonce', {'slug': annonce.slug}) }}" 
+					class="text-dark text-decoration-none">
+						<div class="card box-card box bg-light mx-auto " >
+							{# <img src="/uploads/images/{{produit.image}}" class="card-img-top" alt="{{produit.name}}"> #}
+							<img src="{{ asset('uploads/images/' ~ annonce.image)|imagine_filter('carre') }}"alt="{{ annonce.name}}" class='img img-fluid w-100'>
+							<div class="card-body">
+								<a 
+								href="{{ path('annonce', {'slug': annonce.slug}) }}"
+								class="btn btn-grad btn-sm w-100 align-self-center fw-bold ">VOIR</a>
+							</div>
 						</div>
-					</div>
-				</a>
-			</div>
+					</a>
+				</div>
 			{% endfor %}
+			</div>
 		</div>
 	</div>
 {% endblock %}

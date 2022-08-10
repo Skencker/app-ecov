@@ -19,10 +19,10 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(): Response
     {
-        $produits = $this ->entityManager->getRepository(Annonce::class)->findBy(array(),array('create_at' => 'DESC'));
+        $annonces = $this ->entityManager->getRepository(Annonce::class)->findBy(array(),array('create_at' => 'DESC'));
 
         return $this->render('home/index.html.twig', [
-            'produits' => $produits,
+            'annonces' => $annonces,
         ]);
     }
 }

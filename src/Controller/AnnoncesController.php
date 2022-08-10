@@ -67,7 +67,7 @@ class AnnoncesController extends AbstractController
     #[Route('/compte/annonce/supprimer/{id}', name: 'delete_annonce')]
 
     public function delete(Annonce $annonce) {
-        // dd($product->getId());
+        dd($annonce->getId());
         $this->entityManager->remove($annonce);
         $this->entityManager->flush();
         return $this->redirectToRoute('account');
