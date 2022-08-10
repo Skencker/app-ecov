@@ -41,9 +41,25 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $role = null;
 
+    #[ORM\OneToMany(mappedBy: 'user_buy_id', targetEntity: Message::class)]
+    private Collection $messages;
+
+    #[ORM\OneToMany(mappedBy: 'user_buy_id', targetEntity: MessageChat::class)]
+    private Collection $messageChats;
+
+    #[ORM\OneToMany(mappedBy: 'sender', targetEntity: Messages::class, orphanRemoval: true)]
+    private Collection $sent;
+
+    #[ORM\OneToMany(mappedBy: 'recipient', targetEntity: Messages::class, orphanRemoval: true)]
+    private Collection $received;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+        $this->messageChats = new ArrayCollection();
+        $this->sent = new ArrayCollection();
+        $this->received = new ArrayCollection();
     }
     public function __toString() 
     {
@@ -182,6 +198,126 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRole(string $role): self
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages->add($message);
+            $message->setUserBuyId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getUserBuyId() === $this) {
+                $message->setUserBuyId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MessageChat>
+     */
+    public function getMessageChats(): Collection
+    {
+        return $this->messageChats;
+    }
+
+    public function addMessageChat(MessageChat $messageChat): self
+    {
+        if (!$this->messageChats->contains($messageChat)) {
+            $this->messageChats->add($messageChat);
+            $messageChat->setUserBuyId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessageChat(MessageChat $messageChat): self
+    {
+        if ($this->messageChats->removeElement($messageChat)) {
+            // set the owning side to null (unless already changed)
+            if ($messageChat->getUserBuyId() === $this) {
+                $messageChat->setUserBuyId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Messages>
+     */
+    public function getSent(): Collection
+    {
+        return $this->sent;
+    }
+
+    public function addSent(Messages $sent): self
+    {
+        if (!$this->sent->contains($sent)) {
+            $this->sent->add($sent);
+            $sent->setSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSent(Messages $sent): self
+    {
+        if ($this->sent->removeElement($sent)) {
+            // set the owning side to null (unless already changed)
+            if ($sent->getSender() === $this) {
+                $sent->setSender(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Messages>
+     */
+    public function getReceived(): Collection
+    {
+        return $this->received;
+    }
+
+    public function addReceived(Messages $received): self
+    {
+        if (!$this->received->contains($received)) {
+            $this->received->add($received);
+            $received->setRecipient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReceived(Messages $received): self
+    {
+        if ($this->received->removeElement($received)) {
+            // set the owning side to null (unless already changed)
+            if ($received->getRecipient() === $this) {
+                $received->setRecipient(null);
+            }
+        }
 
         return $this;
     }

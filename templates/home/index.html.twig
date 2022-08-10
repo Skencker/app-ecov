@@ -21,7 +21,9 @@
 							Vendez, donnez ou achetez entre voisins de Saint Pierre de lages !
 							<br>
 						</p>
+					{# <a href="{{ path('catalogue') }}"  #}
 						<button type="btn" class="btn-grad mt-5  btn-lg btn fw-bold text-light text-uppercase">DECOUVRIR</button>
+						</a>
 					</div>
 				</div>
 				<div class='row '>
@@ -55,7 +57,7 @@
 					href="{{ path('annonce', {'slug': annonce.slug}) }}" 
 					class="text-dark text-decoration-none">
 						<div class="card box-card box bg-light mx-auto " >
-							{# <img src="/uploads/images/{{produit.image}}" class="card-img-top" alt="{{produit.name}}"> #}
+						
 							<img src="{{ asset('uploads/images/' ~ annonce.image)|imagine_filter('carre') }}"alt="{{ annonce.name}}" class='img img-fluid w-100'>
 							<div class="card-body">
 								<a 

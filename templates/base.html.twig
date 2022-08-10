@@ -23,7 +23,7 @@
             <div class="container-fluid">
                 <a 
                 href="{{ path('home') }}" 
-                class="navbar-brand">
+                class="navbar-brand ps-5">
                     <img class="img img-fluid" src="{{ asset('build/images/logo.77200da6.svg')}}" alt="logo" style="width:100px " >
                 </a>   
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@
                     </li>
                     <li class="nav-item mx-4 border-bottom border-2 border-secondary">
                         <a 
-                        {# href="{{ path('produits') }}"  #}
+                        href="{{ path('messages') }}" 
                         class="nav-link">Messagerie</a>
                     </li>
                     {% if is_granted('ROLE_USER') %}
@@ -80,6 +80,12 @@
                 </ul>
             </div>
         </nav>
+        {% for message in app.flashes("message")  %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+            </div>
+        {% endfor %}
         {% block content %}{% endblock %}
         <footer class="  text-center fixed-bottom bg-light" >
             <div class="text-center"> EcoV Tout droit reservé  |  

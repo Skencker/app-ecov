@@ -1,0 +1,20 @@
+<container>
+
+    <spacer size="32"></spacer>
+    <row>
+        <columns>
+        <h1>Votre annonce : {{ email.subject }} sur EcoV ! </h1>
+            {# <p>{{ firstnameBuy|nl2br}} {{ lastnameBuy|nl2br}} est intéréssé par votre annonce sur EcoV : {{ email.subject }}</p> #}
+            <p>Son message : <br> {{ message|nl2br}}</p>
+            {# <p>Pour contacter en privé {{ firstnameBuy|nl2br}} {{ lastnameBuy|nl2br}} cliquer : #}
+            {{ mailBuy|nl2br}}
+            <a href={{ mailBuy|nl2br}} > ici </a> </p>
+        </columns>
+    </row>
+    <spacer size="32"></spacer>
+    <row>
+        <columns>
+            {# <p>Répondre à l'e-mail pour répondre à {{ email.replyTo[0].address }}</p> #}
+        </columns>
+    </row>
+</container>

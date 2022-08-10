@@ -28,7 +28,7 @@
                             <p class="card-text"> {{annonce.description}}</p>   
                                 {% if is_granted('ROLE_USER') %}               
                                 <a 
-                                {# href= "{{ path('message_buy', {'id' : annonce.id }) }}"   #}
+                                href= "{{ path('sendId', {'id' : annonce.id }) }}"  
                                 class="btn text-light fw-bold" style="background : #7AB7AB"> ACHETER</a>
                                 {% else %}
                                 <p> Pour contacter le vendeur veuillez vous connecter : 
