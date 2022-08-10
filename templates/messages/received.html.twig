@@ -16,7 +16,7 @@
 					Vous avez reçu : {{app.user.received|length}} messages</p>
 			</div>
 			<div class="col-12 pb-5">
-				<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+				<a class="btn btn-grad" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
 					Voir mes dossiers
 				</a>
 			</div>
@@ -53,7 +53,7 @@
                         <a href="{{path("messages") }}" class="list-group-item list-group-item-action ">Accueil<a>
 				    </div>
 					<div class="list-group">
-                        <a href="{{path("received") }}" class="list-group-item list-group-item-action active">Boîte de réception<a>
+                        <a href="{{path("received") }}" class="list-group-item list-group-item-action text-light" style="background-color:#b81a64">Boîte de réception<a>
 				    </div>
 					<div class="list-group">
                         <a href="{{path("sent") }}" class="list-group-item list-group-item-action ">Elèments Envoyés<a>

@@ -17,21 +17,21 @@
         />
         <link href="{{ asset('build/app.css') }}" rel="stylesheet">
     </head>
-    <body >
+    <body class="mb-5">
         {# Navbar #}
           <nav class="navbar navbar-expand-lg navbar-light"  >
             <div class="container-fluid">
                 <a 
                 href="{{ path('home') }}" 
-                class="navbar-brand ps-5">
+                class="navbar-brand ps-lg-5">
                     <img class="img img-fluid" src="{{ asset('build/images/logo.77200da6.svg')}}" alt="logo" style="width:100px " >
                 </a>   
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav fw-bold m-auto me-5">
+            <div class="collapse navbar-collapse text-center" id="navbarColor03">
+                <ul class="navbar-nav fw-bold m-auto me-lg-5">
                     <li class="nav-item mx-4 border-bottom border-2 border-secondary">
                         <a 
                         href="{{ path('catalogue') }}" 
@@ -42,12 +42,12 @@
                         href="{{ path('village') }}" 
                         class="nav-link">Village</a>
                     </li>
-                    <li class="nav-item mx-4 border-bottom border-2 border-secondary">
-                        <a 
-                        href="{{ path('messages') }}" 
-                        class="nav-link">Messagerie</a>
-                    </li>
                     {% if is_granted('ROLE_USER') %}
+                        <li class="nav-item mx-4 border-bottom border-2 border-secondary">
+                            <a 
+                            href="{{ path('messages') }}" 
+                            class="nav-link">Messagerie</a>
+                        </li>
                         <li class="nav-item mx-4 border-bottom border-2 border-secondary" >
                             <a 
                             href="{{ path('account') }}" 

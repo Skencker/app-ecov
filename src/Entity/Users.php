@@ -60,6 +60,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         $this->messageChats = new ArrayCollection();
         $this->sent = new ArrayCollection();
         $this->received = new ArrayCollection();
+        $this->role = 0;
     }
     public function __toString() 
     {
